@@ -32,9 +32,28 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     protected boolean shouldNotFilter(HttpServletRequest request) {
         String path = request.getRequestURI();
 
-        return path.startsWith("/auth/")
-                || path.equals("/")
-                || path.endsWith(".html"); // 해당 요청들은 doFilterInternal 안하고 통과
+        // 스웨거 & 오픈API 문서
+        if (path.startsWith("/v3/api-docs") ||
+                path.equals("/v3/api-docs/swagger-config") ||
+                path.equals("/swagger-ui.html") ||
+                path.startsWith("/swagger-ui")) {
+            return true;
+        }
+
+        // 인증 없이 열어둘 엔드포인트들
+        if (path.startsWith("/auth/") ||
+                path.equals("/") ||
+                path.equals("/index.html") ||
+                path.equals("/favicon.ico")) {
+            return true;
+        }
+
+        // CORS preflight 는 토큰 검사 스킵
+//        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+//            return true;
+//        }
+
+        return false; // 나머지는 필터 적용(토큰 검사)
     }
 
     @Override

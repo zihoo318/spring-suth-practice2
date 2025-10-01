@@ -5,11 +5,9 @@ import com.example.demo2.auth.dto.LoginResponse;
 import com.example.demo2.auth.dto.SignupRequest;
 import com.example.demo2.security.JwtUtil;
 import com.example.demo2.user.UserRepository;
-import com.example.demo2.user.dto.UserEntity;
+import com.example.demo2.user.UserEntity;
 import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

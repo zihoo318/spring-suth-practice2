@@ -38,6 +38,12 @@ public class SecurityConfig {
                         .requestMatchers("/auth/**").permitAll()
                         // 권한 확인은 메서드(@PreAuthorize("hasRole('ADMIN')"))로하고 인증이 필요하도록만 만들어두기
                         .requestMatchers("/role/**").authenticated()
+                        .requestMatchers( // swagger
+                                "/v3/api-docs/**",
+                                "/v3/api-docs/swagger-config",
+                                "/swagger-ui/**",
+                                "/swagger-ui.html"
+                        ).permitAll()
                         // 그 외는 인증 필요
                         .anyRequest().authenticated()
                 )

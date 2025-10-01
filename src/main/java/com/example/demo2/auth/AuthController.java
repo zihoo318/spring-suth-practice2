@@ -3,7 +3,7 @@ package com.example.demo2.auth;
 import com.example.demo2.auth.dto.LoginRequest;
 import com.example.demo2.auth.dto.LoginResponse;
 import com.example.demo2.auth.dto.SignupRequest;
-import com.example.demo2.user.dto.UserEntity;
+import com.example.demo2.user.UserEntity;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
@@ -29,7 +29,7 @@ public class AuthController {
 
         ResponseCookie refreshCookie = ResponseCookie.from("refreshToken", token.refreshToken())
                 .httpOnly(true).secure(false).path("/").sameSite("Lax")
-                .maxAge(1000 * 60 * 2) // 쿠키 유효 단위 = 1분
+                .maxAge(60 * 60 * 24 * 2)   // 2일
                 .build();
 
         return ResponseEntity.ok()

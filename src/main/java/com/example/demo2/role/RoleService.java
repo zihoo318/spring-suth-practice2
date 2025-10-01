@@ -3,7 +3,7 @@ package com.example.demo2.role;
 import com.example.demo2.role.dto.RoleResponse;
 import com.example.demo2.security.JwtUtil;
 import com.example.demo2.user.UserRepository;
-import com.example.demo2.user.dto.UserEntity;
+import com.example.demo2.user.UserEntity;
 import org.springframework.stereotype.Service;
 
 @Service
